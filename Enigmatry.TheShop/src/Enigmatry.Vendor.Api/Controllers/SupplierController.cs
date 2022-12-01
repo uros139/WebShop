@@ -7,6 +7,13 @@ namespace Enigmatry.Vendor.Api.Controllers;
 [ApiController]
 public class SupplierController : BaseController
 {
+    private readonly ILogger<SupplierController> _logger;
+
+    public SupplierController(ILogger<SupplierController> logger)
+    {
+        _logger = logger;
+    }
+
     [HttpGet]
     public Task<ActionResult<bool>> ArticleInInventory(int id)
     {
