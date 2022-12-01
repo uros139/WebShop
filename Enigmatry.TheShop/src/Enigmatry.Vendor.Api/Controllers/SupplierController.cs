@@ -1,4 +1,5 @@
 ﻿using Enigmatry.Vendor.Api.Dto;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Enigmatry.Vendor.Api.Controllers;
@@ -8,10 +9,12 @@ namespace Enigmatry.Vendor.Api.Controllers;
 public class SupplierController : BaseController
 {
     private readonly ILogger<SupplierController> _logger;
+    private readonly IMediator _mediator;
 
-    public SupplierController(ILogger<SupplierController> logger)
+    public SupplierController(ILogger<SupplierController> logger, IMediator mediator)
     {
         _logger = logger;
+        _mediator = mediator;
     }
 
     [HttpGet]
@@ -20,7 +23,7 @@ public class SupplierController : BaseController
         throw new NotImplementedException();
     }
 
-    [HttpGet("is-article-in-inventory")]
+    [HttpGet("is-article-available")]
     public Task<ActionResult<bool>> ArticleInInventory(int id)
     {
         throw new NotImplementedException();

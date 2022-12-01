@@ -1,4 +1,5 @@
 ﻿using Enigmatry.Shop.Api.Dto;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Enigmatry.Shop.Api.Controllers;
@@ -8,10 +9,12 @@ namespace Enigmatry.Shop.Api.Controllers;
 public class ShopController : BaseController
 {
     private readonly ILogger<ShopController> _logger;
+    private readonly IMediator _mediator;
 
-    public ShopController(ILogger<ShopController> logger)
+    public ShopController(ILogger<ShopController> logger, IMediator mediator)
     {
         _logger = logger;
+        _mediator = mediator;
     }
 
     [HttpGet]
