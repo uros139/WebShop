@@ -18,13 +18,13 @@ public class ShopController : BaseController
     }
 
     [HttpGet]
-    public Task<ActionResult<Article>> GetArticle(int id, int maxExpectedPrice = 200)
+    public Task<ActionResult<ArticleDto>> GetArticle(int id, int maxExpectedPrice = 200)
     {
         throw new NotImplementedException();
     }
 
     [HttpPost]
-    public Task<ActionResult> BuyArticle(Article article, int buyerId)
+    public Task<ActionResult> BuyArticle(ArticleDto article, int buyerId)
     {
         throw new NotImplementedException();
     }

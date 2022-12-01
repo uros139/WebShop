@@ -21,11 +21,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shop", "Shop", "{7E05853C-2
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Vendor", "Vendor", "{14D832F2-03DE-482F-8A5E-A169483ECF7B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{0BA4460E-3910-473C-A774-9DE835B583AD}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HttpClients", "HttpClients", "{0BA4460E-3910-473C-A774-9DE835B583AD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Vendor", "Vendor", "{E74A3B29-3626-42F6-86E1-B92DC014D9A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enigmatry.VendorClient", "src\Enigmatry.Shop.VendorClient\Enigmatry.VendorClient.csproj", "{4FE01627-47C2-4889-AEBD-C7B3977F6F15}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enigmatry.VendorHttpClient", "src\Enigmatry.Shop.VendorClient\Enigmatry.VendorHttpClient.csproj", "{4FE01627-47C2-4889-AEBD-C7B3977F6F15}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enigmatry.ShopHandlers", "src\Enigmatry.Shop.ShopHandler\Enigmatry.ShopHandlers.csproj", "{9E6FB25F-B16E-4B78-9F8D-EFD590F573BC}"
 EndProject

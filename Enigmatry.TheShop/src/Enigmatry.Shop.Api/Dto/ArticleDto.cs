@@ -1,6 +1,6 @@
-﻿namespace Enigmatry.Vendor.Api.Dto;
+﻿namespace Enigmatry.Shop.Api.Dto;
 
-public class Article
+public class ArticleDto
 {
     public int Id { get; set; }
     public string Name { get; set; }

@@ -30,7 +30,7 @@ public class SupplierController : BaseController
     }
 
     [HttpPost]
-    public Task<ActionResult> BuyArticle(Article article, int buyerId)
+    public Task<ActionResult> BuyArticle(ArticleDto article, int buyerId)
     {
         throw new NotImplementedException();
     }
