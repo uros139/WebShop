@@ -15,13 +15,13 @@ public class SupplierController : BaseController
     }
 
     [HttpGet]
-    public Task<ActionResult<bool>> ArticleInInventory(int id)
+    public Task<ActionResult> GetArticle(int id)
     {
         throw new NotImplementedException();
     }
 
-    [HttpGet]
-    public Task<ActionResult> GetArticle(int id)
+    [HttpGet("is-article-in-inventory")]
+    public Task<ActionResult<bool>> ArticleInInventory(int id)
     {
         throw new NotImplementedException();
     }
