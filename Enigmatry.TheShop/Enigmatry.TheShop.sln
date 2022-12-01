@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32328.378
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "api", "api", "{95DC922C-F03C-4AEA-9BBC-8DAA0C074CA6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Enigmatry.Shop.Api", "src\Enigmatry.Shop.Api\Enigmatry.Shop.Api.csproj", "{19446FE9-5DF4-41F5-8044-A563EEF4853F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Enigmatry.Vendor.Api", "src\Enigmatry.Vendor.Api\Enigmatry.Vendor.Api.csproj", "{91A4C96D-753C-4AFC-9D51-1E1D8F5ACF16}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{19446FE9-5DF4-41F5-8044-A563EEF4853F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19446FE9-5DF4-41F5-8044-A563EEF4853F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19446FE9-5DF4-41F5-8044-A563EEF4853F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19446FE9-5DF4-41F5-8044-A563EEF4853F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91A4C96D-753C-4AFC-9D51-1E1D8F5ACF16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91A4C96D-753C-4AFC-9D51-1E1D8F5ACF16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91A4C96D-753C-4AFC-9D51-1E1D8F5ACF16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91A4C96D-753C-4AFC-9D51-1E1D8F5ACF16}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{19446FE9-5DF4-41F5-8044-A563EEF4853F} = {95DC922C-F03C-4AEA-9BBC-8DAA0C074CA6}
+		{91A4C96D-753C-4AFC-9D51-1E1D8F5ACF16} = {95DC922C-F03C-4AEA-9BBC-8DAA0C074CA6}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {44ED110F-83D9-4D50-8E2E-7E4BA606320B}
+	EndGlobalSection
+EndGlobal
