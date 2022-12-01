@@ -6,5 +6,5 @@ namespace Enigmatry.VendorHttpClient;
 public interface IDealer1Client
 {
     [Get("/supplier")]
-    ApiResponse<Task<Article>> GetArticle();
+    Task<ApiResponse<Article>> GetArticle(int id);
 }

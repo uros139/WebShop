@@ -7,11 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MediatR" Version="11.1.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Enigmatry.BestValueService\Enigmatry.BestValueService.csproj" />
     <ProjectReference Include="..\Enigmatry.Shop.VendorClient\Enigmatry.VendorHttpClient.csproj" />
   </ItemGroup>
 

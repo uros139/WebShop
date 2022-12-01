@@ -1,4 +1,5 @@
-﻿using Enigmatry.VendorHttpClient.Models;
+﻿using Enigmatry.BestValueService;
+using Enigmatry.VendorHttpClient.Models;
 using MediatR;
 
 namespace Enigmatry.ShopHandlers;
@@ -17,8 +18,16 @@ public class GetArticle : IRequest<Article>
 
 public class GetArticleHandler : IRequestHandler<GetArticle, Article>
 {
-    public Task<Article> Handle(GetArticle request, CancellationToken cancellationToken)
+    private readonly IBestValueService _service;
+
+    public GetArticleHandler(IBestValueService service)
     {
-        throw new NotImplementedException();
+        _service = service;
+    }
+
+    public async Task<Article> Handle(GetArticle request, CancellationToken cancellationToken)
+    {
+        var article = await _service.GetBestValue(request.Id);
+        return article;
     }
 }

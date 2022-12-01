@@ -1,4 +1,6 @@
 ﻿using Enigmatry.Shop.Api.Dto;
+using Enigmatry.ShopHandlers;
+using Mapster;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,9 +20,10 @@ public class ShopController : BaseController
     }
 
     [HttpGet]
-    public Task<ActionResult<ArticleDto>> GetArticle(int id, int maxExpectedPrice = 200)
+    public async Task<ActionResult<ArticleDto>> GetArticle(int id, int maxExpectedPrice = 200)
     {
-        throw new NotImplementedException();
+        var result = await _mediator.Send(new GetArticle(id, maxExpectedPrice));
+        return OkOrNotFound(result.Adapt<ArticleDto>());
     }
 
     [HttpPost]
