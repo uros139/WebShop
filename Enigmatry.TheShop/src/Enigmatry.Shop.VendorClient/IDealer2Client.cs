@@ -1,7 +1,7 @@
-﻿using Enigmatry.VendorHttpClient.Models;
+﻿using Enigmatry.Shop.VendorClient.Models;
 using Refit;
 
-namespace Enigmatry.VendorHttpClient;
+namespace Enigmatry.Shop.VendorClient;
 
 public interface IDealer2Client
 {

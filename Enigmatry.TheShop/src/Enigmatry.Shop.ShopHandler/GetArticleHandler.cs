@@ -1,8 +1,8 @@
-﻿using Enigmatry.BestValueService;
-using Enigmatry.VendorHttpClient.Models;
+﻿using Enigmatry.Shop.BestValueService;
+using Enigmatry.Shop.VendorClient.Models;
 using MediatR;
 
-namespace Enigmatry.ShopHandlers;
+namespace Enigmatry.Shop.Handlers;
 
 public class GetArticle : IRequest<Article>
 {

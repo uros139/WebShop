@@ -1,4 +1,4 @@
-﻿using Enigmatry.VendorHttpClient.Models;
+﻿using Enigmatry.Shop.VendorClient.Models;
 using Microsoft.Extensions.Logging;
 
 namespace Enigmatry.Shop.DbAccess.Shop.Query;

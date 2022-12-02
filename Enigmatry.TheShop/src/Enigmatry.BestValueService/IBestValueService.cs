@@ -1,6 +1,6 @@
-﻿using Enigmatry.VendorHttpClient.Models;
+﻿using Enigmatry.Shop.VendorClient.Models;
 
-namespace Enigmatry.BestValueService;
+namespace Enigmatry.Shop.BestValueService;
 
 public interface IBestValueService
 {

@@ -1,5 +1,5 @@
 ﻿using Enigmatry.Shop.Api.Dto;
-using Enigmatry.ShopHandlers;
+using Enigmatry.Shop.Handlers;
 using Mapster;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

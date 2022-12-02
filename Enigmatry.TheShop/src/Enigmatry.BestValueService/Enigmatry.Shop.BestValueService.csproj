@@ -12,8 +12,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Enigmatry.DbAccess\Enigmatry.Shop.DbAccess.csproj" />
-    <ProjectReference Include="..\Enigmatry.Shop.VendorClient\Enigmatry.VendorHttpClient.csproj" />
-    <ProjectReference Include="..\Enigmatry.WareHouseService\Enigmatry.WareHouseService.csproj" />
+    <ProjectReference Include="..\Enigmatry.Shop.VendorClient\Enigmatry.Shop.VendorClient.csproj" />
+    <ProjectReference Include="..\Enigmatry.WareHouseService\Enigmatry.Shop.WareHouseService.csproj" />
   </ItemGroup>
 
 </Project>

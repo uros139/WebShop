@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Enigmatry.VendorHttpClient.Models;
+namespace Enigmatry.Shop.VendorClient.Models;
 
 public class Article
 {

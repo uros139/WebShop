@@ -1,6 +1,6 @@
-﻿using Enigmatry.VendorHttpClient.Models;
+﻿using Enigmatry.Shop.VendorClient.Models;
 
-namespace Enigmatry.WareHouseService;
+namespace Enigmatry.Shop.WareHouseService;
 
 public interface IWareHouseService
 {

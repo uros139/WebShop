@@ -1,10 +1,10 @@
 ﻿using Enigmatry.Shop.DbAccess.Shop.Command;
-using Enigmatry.VendorHttpClient;
-using Enigmatry.VendorHttpClient.Models;
-using Enigmatry.WareHouseService;
+using Enigmatry.Shop.VendorClient;
+using Enigmatry.Shop.VendorClient.Models;
+using Enigmatry.Shop.WareHouseService;
 using Microsoft.Extensions.Logging;
 
-namespace Enigmatry.BestValueService;
+namespace Enigmatry.Shop.BestValueService;
 
 public class BestValueService : IBestValueService
 {

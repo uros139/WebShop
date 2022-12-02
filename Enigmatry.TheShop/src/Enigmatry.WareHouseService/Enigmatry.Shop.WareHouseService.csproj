@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Enigmatry.Shop.VendorClient\Enigmatry.VendorHttpClient.csproj" />
+    <ProjectReference Include="..\Enigmatry.Shop.VendorClient\Enigmatry.Shop.VendorClient.csproj" />
   </ItemGroup>
 
 </Project>
