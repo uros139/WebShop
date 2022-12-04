@@ -1,8 +1,6 @@
-﻿using Enigmatry.Shop.DbAccess.Shop.Query;
+﻿using Enigmatry.Shop.Dealer1Service;
 using Enigmatry.Shop.Models;
-using Enigmatry.Shop.VendorClient;
 using Enigmatry.Shop.WareHouseService;
-using Mapster;
 using Microsoft.Extensions.Logging;
 
 namespace Enigmatry.Shop.BestValueService;
@@ -11,38 +9,31 @@ public class BestValueService : IBestValueService
 {
     private readonly Dictionary<int, Article> _cachedArticles;
     private readonly IWareHouseService _wareHouseService;
-    private readonly IDealer1Client _firstDealerClient;
-    private readonly IDealer2Client _secondDealerClient;
-    private readonly ArticleQuery _articleQuery;
+    private readonly IDealer1Service _firstDealerService;
+    private readonly IDealer1Service _secondDealerService;
     private readonly ILogger<BestValueService> _logger;
 
-    public BestValueService(IWareHouseService wareHouseService, IDealer1Client firstDealerClient, IDealer2Client secondDealerClient, Dictionary<int, Article> cachedArticles, ArticleQuery articleQuery, ILogger<BestValueService> logger)
+    public BestValueService(Dictionary<int, Article> cachedArticles, IWareHouseService wareHouseService, IDealer1Service firstDealerService, IDealer1Service secondDealerService, ILogger<BestValueService> logger)
     {
-        _wareHouseService = wareHouseService;
-        _firstDealerClient = firstDealerClient;
-        _secondDealerClient = secondDealerClient;
-        _articleQuery = articleQuery;
         _cachedArticles = cachedArticles;
-        _logger = logger;
+        _wareHouseService = wareHouseService;
+        _firstDealerService = firstDealerService;
+        _secondDealerService = secondDealerService;
+        _logger = logger;   
     }
-
     public async Task<(bool, Article)> GetBestValue(int id)
     {
-        var articles = new List<Article?>();
+        //get articles from all sources, then get get one with lowest price
+       
+        var articles = new List<Article>();
 
         if (_wareHouseService.ArticleInInventory(id))
             articles.Add(_wareHouseService.GetArticle(id));
 
-        var (found, article) = _articleQuery.GetById(id);
-
-        if (found)
-            articles.Add(article);
-        else _logger.LogInformation("Could not get article from db");
-
-        var (dealer1Found, article1) = await GetArticleFromDealer1(id);
+        var (dealer1Found, article1) = await _firstDealerService.GetArticle(id);
         if (dealer1Found) articles.Add(article1);
 
-        var (dealer2Found, article2) = await GetArticleFromDealer2(id);
+        var (dealer2Found, article2) = await _secondDealerService.GetArticle(id);
         if (dealer2Found) articles.Add(article2);
 
         if (_cachedArticles.TryGetValue(id, out var cachedArticle))
@@ -58,65 +49,4 @@ public class BestValueService : IBestValueService
         return (false, new Article());
 
     }
-
-    private async Task<(bool, Article)> GetArticleFromDealer1(int id)
-    {
-
-        var found = false;
-        Article? article = new Article();
-        try
-        {
-            _logger.LogInformation("Trying to retrieve article from dealer 1");
-            var response = await _firstDealerClient.GetArticle(id);
-
-            switch (response.IsSuccessStatusCode)
-            {
-                case true when response.Content != null:
-                    found = true;
-                    article = response.Content.Adapt<Article>();
-                    break;
-                case false:
-                    _logger.LogWarning($"Failed to get article from dealer 1: {response.Error}");
-                    break;
-            }
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError($"Failed to get article from dealer 1:{ex.Message}");
-            return (false, null);
-        }
-
-        return (found, article);
-    }
-
-    private async Task<(bool, Article)> GetArticleFromDealer2(int id)
-    {
-        var found = false;
-        Article article = new Article();
-        try
-        {
-            _logger.LogInformation("Trying to retrieve article from dealer 2");
-            var response = await _secondDealerClient.GetArticle(id);
-
-            switch (response.IsSuccessStatusCode)
-            {
-                case true when response.Content != null:
-                    found = true;
-                    article = response.Content.Adapt<Article>();
-                    break;
-                case false:
-                    _logger.LogWarning($"Failed to get article from dealer 2: {response.Error}");
-                    break;
-            }
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError($"Failed to get article from dealer 2:{ex.Message}");
-            return (false, null);
-        }
-
-        return (found, article);
-    }
-
-
 }

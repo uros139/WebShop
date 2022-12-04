@@ -1,6 +1,8 @@
 using Enigmatry.Shop.BestValueService;
 using Enigmatry.Shop.DbAccess.Shop.Command;
 using Enigmatry.Shop.DbAccess.Shop.Query;
+using Enigmatry.Shop.Dealer1Service;
+using Enigmatry.Shop.Dealer2Service;
 using Enigmatry.Shop.Handlers.Extensions;
 using Enigmatry.Shop.Models;
 using Enigmatry.Shop.VendorClient.Extensions;
@@ -19,6 +21,8 @@ builder.Services.AddMediator();
 builder.Services.AddDealerClients(builder.Configuration);
 builder.Services.AddSingleton<IBestValueService, BestValueService>();
 builder.Services.AddSingleton<IWareHouseService, WareHouseService>();
+builder.Services.AddSingleton<IDealer1Service, Dealer1Service>();
+builder.Services.AddSingleton<IDealer2Service, Dealer2Service>();
 
 //cached articles
 builder.Services.AddSingleton<Dictionary<int, Article>>();

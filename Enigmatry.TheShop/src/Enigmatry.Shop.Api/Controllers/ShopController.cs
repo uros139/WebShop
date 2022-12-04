@@ -27,9 +27,9 @@ public class ShopController : ControllerBase
     }
 
     [HttpPost("{buyerId}/buy")]
-    public async Task<ActionResult<Response<Article>>> BuyArticle(int buyerId, [FromBody] ArticleDto request)
+    public async Task<ActionResult<Response<Article>>> BuyArticle(int buyerId, [FromBody] BuyArticleDto request)
     {
-        var result = await _mediator.Send(new BuyArticle(request.Id, buyerId));
+        var result = await _mediator.Send(new BuyArticle(request.Id, request.Price, buyerId));
         return Ok(result);
     }
 }
