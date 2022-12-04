@@ -10,7 +10,7 @@ namespace Enigmatry.Shop.Api.Controllers;
 
 [Route("[controller]")]
 [ApiController]
-public class ShopController : BaseController
+public class ShopController : ControllerBase
 {
     private readonly ILogger<ShopController> _logger;
     private readonly IMediator _mediator;
