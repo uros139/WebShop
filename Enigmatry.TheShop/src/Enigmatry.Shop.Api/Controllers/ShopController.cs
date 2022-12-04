@@ -12,12 +12,10 @@ namespace Enigmatry.Shop.Api.Controllers;
 [ApiController]
 public class ShopController : ControllerBase
 {
-    private readonly ILogger<ShopController> _logger;
     private readonly IMediator _mediator;
 
-    public ShopController(ILogger<ShopController> logger, IMediator mediator)
+    public ShopController(IMediator mediator)
     {
-        _logger = logger;
         _mediator = mediator;
     }
 
