@@ -47,21 +47,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dataAccess", "dataAccess", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{8746173C-0F65-4C35-B8CF-CAF255E4E112}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enigmatry.Vendor.SupplierService", "src\Enigmatry.Vendor.SupplierService\Enigmatry.Vendor.SupplierService.csproj", "{A3A81DFD-E0A0-4B1F-B9F9-ACD539186FB1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Enigmatry.Vendor.SupplierService", "src\Enigmatry.Vendor.SupplierService\Enigmatry.Vendor.SupplierService.csproj", "{A3A81DFD-E0A0-4B1F-B9F9-ACD539186FB1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "models", "models", "{7E2277FD-3ED6-4941-BC83-2920E2F22FB2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enigmatry.Vendor.Models", "src\Enigmatry.Vendor.Models\Enigmatry.Vendor.Models.csproj", "{8D0A1E70-D234-405A-91C9-E8BF10075CF0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Enigmatry.Vendor.Models", "src\Enigmatry.Vendor.Models\Enigmatry.Vendor.Models.csproj", "{8D0A1E70-D234-405A-91C9-E8BF10075CF0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enigmatry.Vendor.DataAccess", "src\Enigmatry.Vendor.DataAccess\Enigmatry.Vendor.DataAccess.csproj", "{2C604A27-4340-4483-9346-4E253AC397C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Enigmatry.Vendor.DataAccess", "src\Enigmatry.Vendor.DataAccess\Enigmatry.Vendor.DataAccess.csproj", "{2C604A27-4340-4483-9346-4E253AC397C4}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{F82029A6-0681-4B0D-BCFE-8D47A9B22046}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Enigmatry.Shop.Dealer1Service", "src\Enigmatry.Shop.Dealer1Service\Enigmatry.Shop.Dealer1Service.csproj", "{2ECC41D8-48DF-4688-BE17-72FFEDA81DDF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enigmatry.Tests", "Enigmatry.Tests\Enigmatry.Tests.csproj", "{6548232C-7190-41A2-A0B0-8075439D38E9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enigmatry.Shop.Dealer1Service", "src\Enigmatry.Shop.Dealer1Service\Enigmatry.Shop.Dealer1Service.csproj", "{2ECC41D8-48DF-4688-BE17-72FFEDA81DDF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enigmatry.Shop.Dealer2Service", "src\Enigmatry.Shop.Dealer2Service\Enigmatry.Shop.Dealer2Service.csproj", "{2D7EA97E-7A7B-4F7F-BAC6-06DCFF0189AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Enigmatry.Shop.Dealer2Service", "src\Enigmatry.Shop.Dealer2Service\Enigmatry.Shop.Dealer2Service.csproj", "{2D7EA97E-7A7B-4F7F-BAC6-06DCFF0189AA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -117,10 +113,6 @@ Global
 		{2C604A27-4340-4483-9346-4E253AC397C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C604A27-4340-4483-9346-4E253AC397C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C604A27-4340-4483-9346-4E253AC397C4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6548232C-7190-41A2-A0B0-8075439D38E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6548232C-7190-41A2-A0B0-8075439D38E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6548232C-7190-41A2-A0B0-8075439D38E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6548232C-7190-41A2-A0B0-8075439D38E9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2ECC41D8-48DF-4688-BE17-72FFEDA81DDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2ECC41D8-48DF-4688-BE17-72FFEDA81DDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2ECC41D8-48DF-4688-BE17-72FFEDA81DDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -159,7 +151,6 @@ Global
 		{7E2277FD-3ED6-4941-BC83-2920E2F22FB2} = {52268829-55A9-4F4F-9E30-0FAF3207D464}
 		{8D0A1E70-D234-405A-91C9-E8BF10075CF0} = {7E2277FD-3ED6-4941-BC83-2920E2F22FB2}
 		{2C604A27-4340-4483-9346-4E253AC397C4} = {AB767B8B-114A-4D4A-8318-8146133A7DB2}
-		{6548232C-7190-41A2-A0B0-8075439D38E9} = {F82029A6-0681-4B0D-BCFE-8D47A9B22046}
 		{2ECC41D8-48DF-4688-BE17-72FFEDA81DDF} = {EA39DA16-0781-47A2-BDF5-46DA82B97DA2}
 		{2D7EA97E-7A7B-4F7F-BAC6-06DCFF0189AA} = {EA39DA16-0781-47A2-BDF5-46DA82B97DA2}
 	EndGlobalSection
