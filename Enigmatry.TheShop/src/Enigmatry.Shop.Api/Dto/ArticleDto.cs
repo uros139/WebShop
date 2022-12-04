@@ -4,14 +4,10 @@ namespace Enigmatry.Shop.Api.Dto;
 
 public class ArticleDto
 {
-    [JsonPropertyName("Id")]
+    [JsonPropertyName("id")]
     public int Id { get; set; }
-    [JsonPropertyName("Name")]
+    [JsonPropertyName("name")]
     public string Name { get; set; }
-    [JsonPropertyName("Price")]
+    [JsonPropertyName("price")]
     public int Price { get; set; }
-    public bool IsSold { get; set; }
-    [JsonIgnore]
-    public DateTime SoldDate { get; set; }
-    public int BuyerUserId { get; set; }
 }

@@ -14,16 +14,18 @@ public class ArticleCommand
         _logger = logger;
     }
 
-    public void Save(Article article)
+    public Task<bool> Save(Article article)
     {
         try
         {
             _articles.Add(article);
+            _logger.LogInformation($"Successfully sold article : {article.Id} to buyer : {article.BuyerUserId}");
+            return Task.FromResult(true);
         }
         catch (Exception ex)
         {
             _logger.LogError($"Error while saving article {ex.Message}");
-            throw new Exception($"Error :{ex.Message}");
+            return Task.FromResult(false);
         }
 
     }

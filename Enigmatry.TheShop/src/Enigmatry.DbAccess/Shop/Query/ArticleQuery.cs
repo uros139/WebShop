@@ -17,18 +17,20 @@ public class ArticleQuery
         _logger = logger;
     }
 
-    public (bool, Article) GetById(int id)
+    public (bool, Article?) GetById(int id)
     {
         try
         {
             var article = _articles.SingleOrDefault(x => x.Id == id);
 
             var found = article != null;
-            return new(found, article);
+            if (article != null) return (found, article);
+            _logger.LogError($"Error while retrieving article: {id}");
+            return (false, null);
         }
         catch (Exception ex)
         {
-            _logger.LogError($"Error while retreiving article: {ex.Message}");
+            _logger.LogError($"Error while retrieving article: {ex.Message}");
             throw new Exception(ex.Message);
         }
     }

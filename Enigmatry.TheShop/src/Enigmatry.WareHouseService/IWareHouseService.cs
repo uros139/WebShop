@@ -6,7 +6,7 @@ public interface IWareHouseService
 {
     public bool ArticleInInventory(int id);
 
-    public Article GetArticle(int id);
+    public Article? GetArticle(int id);
 }
 
 

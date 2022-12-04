@@ -31,20 +31,20 @@ public class GetArticleHandler : IRequestHandler<GetArticle, Response<Article>>
     public async Task<Response<Article>> Handle(GetArticle request, CancellationToken cancellationToken)
     {
         var (found, article) = await _service.GetBestValue(request.Id);
-        if (!found && !_cachedArticles.ContainsKey(request.Id)) return ApiResponse.Fail(article, "Not found");
+        if (!found && !_cachedArticles.ContainsKey(request.Id)) return ApiResponse.Fail(new Article(),"Not found");
 
         if (!_cachedArticles.ContainsKey(request.Id) && found) _cachedArticles.TryAdd(article.Id, article);
 
         if (_cachedArticles.TryGetValue(request.Id, out var cachedArticle))
         {
-            if (cachedArticle.Price > article.Price)
+            if (article != null && cachedArticle.Price > article.Price)
             {
                 _cachedArticles.Remove(article.Id);
                 _cachedArticles.TryAdd(article.Id, article);
             }
         }
 
-        if (request.MaxPrice is not null && article.Price >= request.MaxPrice)
+        if (article != null && request.MaxPrice is not null && article.Price >= request.MaxPrice)
             return ApiResponse.Fail(article, "Not found for that price");
 
         return ApiResponse.Ok(article);

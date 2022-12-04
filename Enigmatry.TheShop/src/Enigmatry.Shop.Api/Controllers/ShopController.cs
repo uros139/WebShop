@@ -1,5 +1,6 @@
 ﻿using Enigmatry.Shop.Api.Dto;
 using Enigmatry.Shop.Handlers;
+using Enigmatry.Shop.Models;
 using Enigmatry.Shop.Models.Extensions;
 using Mapster;
 using MediatR;
@@ -28,8 +29,9 @@ public class ShopController : BaseController
     }
 
     [HttpPost("{buyerId}/buy")]
-    public Task<ActionResult> BuyArticle(int buyerId, [FromBody] ArticleDto article)
+    public async Task<ActionResult<Response<Article>>> BuyArticle(int buyerId, [FromBody] ArticleDto request)
     {
-        throw new NotImplementedException();
+        var result = await _mediator.Send(new BuyArticle(request.Id, buyerId));
+        return Ok(result);
     }
 }

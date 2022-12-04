@@ -6,7 +6,7 @@ public class WareHouseService : IWareHouseService
 {
     public bool ArticleInInventory(int id) => new Random().NextDouble() >= 0.5;
 
-    public Article GetArticle(int id)
+    public Article? GetArticle(int id)
     {
         return new Article()
         {

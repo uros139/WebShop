@@ -1,4 +1,5 @@
 using Enigmatry.Shop.BestValueService;
+using Enigmatry.Shop.DbAccess.Shop.Command;
 using Enigmatry.Shop.DbAccess.Shop.Query;
 using Enigmatry.Shop.Handlers.Extensions;
 using Enigmatry.Shop.Models;
@@ -24,6 +25,7 @@ builder.Services.AddSingleton<Dictionary<int, Article>>();
 //db mock
 builder.Services.AddSingleton<List<Article>>();
 builder.Services.AddSingleton<ArticleQuery>();
+builder.Services.AddSingleton<ArticleCommand>();
 
 var app = builder.Build();
 

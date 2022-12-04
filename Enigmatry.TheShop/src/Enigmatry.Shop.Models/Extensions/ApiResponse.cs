@@ -1,6 +1,4 @@
-﻿using System.Text.Json.Serialization;
-
-namespace Enigmatry.Shop.Models.Extensions;
+﻿namespace Enigmatry.Shop.Models.Extensions;
 
 public static class ApiResponse
 {
