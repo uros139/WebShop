@@ -9,14 +9,14 @@ namespace Enigmatry.Shop.BestValueService;
 
 public class BestValueService : IBestValueService
 {
-    private readonly Dictionary<int, Article?> _cachedArticles;
+    private readonly Dictionary<int, Article> _cachedArticles;
     private readonly IWareHouseService _wareHouseService;
     private readonly IDealer1Client _firstDealerClient;
     private readonly IDealer2Client _secondDealerClient;
     private readonly ArticleQuery _articleQuery;
     private readonly ILogger<BestValueService> _logger;
 
-    public BestValueService(IWareHouseService wareHouseService, IDealer1Client firstDealerClient, IDealer2Client secondDealerClient, Dictionary<int, Article?> cachedArticles, ArticleQuery articleQuery, ILogger<BestValueService> logger)
+    public BestValueService(IWareHouseService wareHouseService, IDealer1Client firstDealerClient, IDealer2Client secondDealerClient, Dictionary<int, Article> cachedArticles, ArticleQuery articleQuery, ILogger<BestValueService> logger)
     {
         _wareHouseService = wareHouseService;
         _firstDealerClient = firstDealerClient;

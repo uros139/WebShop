@@ -33,9 +33,10 @@ public class GetArticleHandler : IRequestHandler<GetArticle, Response<Article>>
         var (found, article) = await _service.GetBestValue(request.Id);
         if (!found && !_cachedArticles.ContainsKey(request.Id)) return ApiResponse.Fail(new Article(),"Not found");
 
+
         if (!_cachedArticles.ContainsKey(request.Id) && found) _cachedArticles.TryAdd(article.Id, article);
 
-        if (_cachedArticles.TryGetValue(request.Id, out var cachedArticle))
+        if (_cachedArticles.TryGetValue(article.Id, out var cachedArticle))
         {
             if (cachedArticle.Price > article.Price)
             {
