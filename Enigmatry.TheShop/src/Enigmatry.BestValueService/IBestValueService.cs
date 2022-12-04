@@ -4,5 +4,5 @@ namespace Enigmatry.Shop.BestValueService;
 
 public interface IBestValueService
 {
-    public Task<(bool, Article?)> GetBestValue(int id);
+    public Task<(bool, Article)> GetBestValue(int id);
 }

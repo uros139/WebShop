@@ -1,4 +1,7 @@
 ﻿using Enigmatry.Vendor.Api.Dto;
+using Enigmatry.Vendor.Handlers;
+using Enigmatry.Vendor.Models;
+using Mapster;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,20 +21,16 @@ public class SupplierController : BaseController
     }
 
     [HttpGet]
-    public Task<ActionResult> GetArticle(int id)
+    public async Task<ActionResult<ArticleDto?>> GetArticle(int id)
     {
-        throw new NotImplementedException();
+        var article = await _mediator.Send(new GetArticle(id));
+        return OkOrNotFound(article.Adapt<ArticleDto?>());
     }
 
-    [HttpGet("is-article-available")]
-    public Task<ActionResult<bool>> ArticleInInventory(int id)
+    [HttpPost("{buyerId}/buy")]
+    public async Task<ActionResult<Article>> BuyArticle(int buyerId, [FromBody] ArticleDto request)
     {
-        throw new NotImplementedException();
-    }
-
-    [HttpPost]
-    public Task<ActionResult> BuyArticle(ArticleDto article, int buyerId)
-    {
-        throw new NotImplementedException();
+        var result = await _mediator.Send(new BuyArticle(request.Id, request.Name, request.Price, buyerId));
+        return OkOrNotFound(result);
     }
 }

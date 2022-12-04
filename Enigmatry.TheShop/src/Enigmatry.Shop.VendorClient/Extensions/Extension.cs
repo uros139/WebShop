@@ -10,11 +10,11 @@ public static class Extension
     {
         services
             .AddRefitClient<IDealer1Client>()
-            .ConfigureHttpClient(c => c.BaseAddress = new Uri("https://myapi.com"));
+            .ConfigureHttpClient(c => c.BaseAddress = new Uri(config["ApiUrls:Dealer1"]));
 
         services
             .AddRefitClient<IDealer2Client>()
-            .ConfigureHttpClient(c => c.BaseAddress = new Uri("https://myapi.com"));
+            .ConfigureHttpClient(c => c.BaseAddress = new Uri(config["ApiUrls:Dealer2"]));
 
     }
 }

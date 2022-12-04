@@ -2,6 +2,7 @@
 using Enigmatry.Shop.Models;
 using Enigmatry.Shop.VendorClient;
 using Enigmatry.Shop.WareHouseService;
+using Mapster;
 using Microsoft.Extensions.Logging;
 using Refit;
 
@@ -26,7 +27,7 @@ public class BestValueService : IBestValueService
         _logger = logger;
     }
 
-    public async Task<(bool, Article?)> GetBestValue(int id)
+    public async Task<(bool, Article)> GetBestValue(int id)
     {
         var articles = new List<Article?>();
 
@@ -42,10 +43,10 @@ public class BestValueService : IBestValueService
         var (dealer1Found, article1) = await GetArticleFromDealer1(id);
         if (dealer1Found) articles.Add(article1);
 
-        var (dealer2Found, article2) = await GetArticleFromDealer1(id);
+        var (dealer2Found, article2) = await GetArticleFromDealer2(id);
         if (dealer2Found) articles.Add(article2);
 
-        if (_cachedArticles.TryGetValue(id, out Article? cachedArticle))
+        if (_cachedArticles.TryGetValue(id, out var cachedArticle))
         {
             articles.Add(cachedArticle);
         }
@@ -53,13 +54,13 @@ public class BestValueService : IBestValueService
         var articleMinPrice = articles.MinBy(x => x.Price);
 
         if (articleMinPrice is not null) return (true, articleMinPrice);
-
+        
         _logger.LogWarning("Unable to retrieve article");
         return (false, new Article());
 
     }
 
-    private async Task<(bool, Article?)> GetArticleFromDealer1(int id)
+    private async Task<(bool, Article)> GetArticleFromDealer1(int id)
     {
 
         var found = false;
@@ -73,7 +74,7 @@ public class BestValueService : IBestValueService
             {
                 case true when response.Content != null:
                     found = true;
-                    article = response.Content;
+                    article = response.Content.Adapt<Article>();
                     break;
                 case false:
                     _logger.LogWarning($"Failed to get article from dealer 1: {response.Error}");
@@ -102,7 +103,7 @@ public class BestValueService : IBestValueService
             {
                 case true when response.Content != null:
                     found = true;
-                    article = response.Content;
+                    article = response.Content.Adapt<Article>();
                     break;
                 case false:
                     _logger.LogWarning($"Failed to get article from dealer 2: {response.Error}");
