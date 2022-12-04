@@ -22,7 +22,7 @@ public class ShopController : BaseController
     }
 
     [HttpGet("{id}/get-article")]
-    public async Task<ActionResult<Response<ArticleDto>>> GetArticle(int id, [FromQuery] int? maxExpectedPrice = 200)
+    public async Task<ActionResult<Response<ArticleDto>>> GetArticle(int id, [FromQuery] int? maxExpectedPrice)
     {
         var result = await _mediator.Send(new GetArticle(id, maxExpectedPrice));
         return Ok(result.Adapt<Response<ArticleDto>>());

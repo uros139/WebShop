@@ -32,6 +32,11 @@ public class BuyArticleHandler : IRequestHandler<BuyArticle, Response<Article>>
     {
         if (_cachedArticles.TryGetValue(request.Id, out var item))
         {
+            if (item.IsSold)
+            {
+                return ApiResponse.Fail(item, "Article is sold");
+            }
+
             var article = new Article
             {
                 Id = item.Id,
@@ -40,6 +45,10 @@ public class BuyArticleHandler : IRequestHandler<BuyArticle, Response<Article>>
                 SoldDate = DateTimeOffset.UtcNow,
                 BuyerUserId = request.BuyerId
             };
+
+            _cachedArticles.Remove(request.Id);
+            _cachedArticles.Add(request.Id, article);
+
 
            var success =  await _articleCommand.Save(article);
            return success ? ApiResponse.Ok(article) : ApiResponse.Fail(article, "Failed to complete transaction");
