@@ -1,7 +1,7 @@
-﻿using Enigmatry.Shop.VendorClient.Models;
+﻿using Enigmatry.Shop.Models;
 using Microsoft.Extensions.Logging;
 
-namespace Enigmatry.Shop.DbAccess.Shop.Command;
+namespace Enigmatry.Shop.DbAccess.Shop.Query;
 
 //DB Queries MOCK
 

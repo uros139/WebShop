@@ -1,5 +1,6 @@
 ﻿using Enigmatry.Shop.Api.Dto;
 using Enigmatry.Shop.Handlers;
+using Enigmatry.Shop.Models.Extensions;
 using Mapster;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -19,15 +20,15 @@ public class ShopController : BaseController
         _mediator = mediator;
     }
 
-    [HttpGet]
-    public async Task<ActionResult<ArticleDto>> GetArticle(int id, int maxExpectedPrice = 200)
+    [HttpGet("{id}/get-article")]
+    public async Task<ActionResult<Response<ArticleDto>>> GetArticle(int id, [FromQuery] int? maxExpectedPrice = 200)
     {
         var result = await _mediator.Send(new GetArticle(id, maxExpectedPrice));
-        return OkOrNotFound(result.Adapt<ArticleDto>());
+        return Ok(result.Adapt<Response<ArticleDto>>());
     }
 
-    [HttpPost]
-    public Task<ActionResult> BuyArticle(ArticleDto article, int buyerId)
+    [HttpPost("{buyerId}/buy")]
+    public Task<ActionResult> BuyArticle(int buyerId, [FromBody] ArticleDto article)
     {
         throw new NotImplementedException();
     }

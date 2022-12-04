@@ -1,4 +1,4 @@
-﻿using Enigmatry.Shop.VendorClient.Models;
+﻿using Enigmatry.Shop.Models;
 
 namespace Enigmatry.Shop.WareHouseService;
 

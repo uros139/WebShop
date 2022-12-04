@@ -1,8 +1,8 @@
-﻿using Enigmatry.Shop.VendorClient.Models;
+﻿using Enigmatry.Shop.Models;
 
 namespace Enigmatry.Shop.BestValueService;
 
 public interface IBestValueService
 {
-    public Task<Article> GetBestValue(int id);
+    public Task<(bool, Article)> GetBestValue(int id);
 }

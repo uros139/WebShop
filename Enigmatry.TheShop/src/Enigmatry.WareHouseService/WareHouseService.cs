@@ -1,10 +1,10 @@
-﻿using Enigmatry.Shop.VendorClient.Models;
+﻿using Enigmatry.Shop.Models;
 
 namespace Enigmatry.Shop.WareHouseService;
 
 public class WareHouseService : IWareHouseService
 {
-    public bool ArticleInInventory(int id) => new Random().NextDouble() >= id;
+    public bool ArticleInInventory(int id) => new Random().NextDouble() >= 0.5;
 
     public Article GetArticle(int id)
     {

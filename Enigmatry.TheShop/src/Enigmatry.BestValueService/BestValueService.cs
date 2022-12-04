@@ -1,6 +1,6 @@
-﻿using Enigmatry.Shop.DbAccess.Shop.Command;
+﻿using Enigmatry.Shop.DbAccess.Shop.Query;
+using Enigmatry.Shop.Models;
 using Enigmatry.Shop.VendorClient;
-using Enigmatry.Shop.VendorClient.Models;
 using Enigmatry.Shop.WareHouseService;
 using Microsoft.Extensions.Logging;
 
@@ -8,69 +8,116 @@ namespace Enigmatry.Shop.BestValueService;
 
 public class BestValueService : IBestValueService
 {
-    private Dictionary<int, Article> _articlesCache;
+    private readonly Dictionary<int, Article> _cachedArticles;
     private readonly IWareHouseService _wareHouseService;
-    private readonly IDealer1Client _firstDealer;
-    private readonly IDealer2Client _secondDealer;
+    private readonly IDealer1Client _firstDealerClient;
+    private readonly IDealer2Client _secondDealerClient;
     private readonly ArticleQuery _articleQuery;
     private readonly ILogger<BestValueService> _logger;
 
-    public BestValueService(IWareHouseService wareHouseService, IDealer1Client firstDealer, IDealer2Client secondDealer, Dictionary<int, Article> articlesCache, ArticleQuery articleQuery, ILogger<BestValueService> logger)
+    public BestValueService(IWareHouseService wareHouseService, IDealer1Client firstDealerClient, IDealer2Client secondDealerClient, Dictionary<int, Article> cachedArticles, ArticleQuery articleQuery, ILogger<BestValueService> logger)
     {
         _wareHouseService = wareHouseService;
-        _firstDealer = firstDealer;
-        _secondDealer = secondDealer;
+        _firstDealerClient = firstDealerClient;
+        _secondDealerClient = secondDealerClient;
         _articleQuery = articleQuery;
-        _articlesCache = articlesCache;
+        _cachedArticles = cachedArticles;
         _logger = logger;
     }
 
-    public async Task<Article> GetBestValue(int id)
+    public async Task<(bool, Article)> GetBestValue(int id)
     {
         var articles = new List<Article>();
+
+        if (_wareHouseService.ArticleInInventory(id))
+            articles.Add(_wareHouseService.GetArticle(id));
+
+        var (found, article) = _articleQuery.GetById(id);
+
+        if (found)
+            articles.Add(article);
+        else _logger.LogInformation("Could not get article from db");
+
+        var (dealer1Found, article1) = await GetArticleFromDealer1(id);
+        if (dealer1Found) articles.Add(article1);
+
+        var (dealer2Found, article2) = await GetArticleFromDealer1(id);
+        if (dealer2Found) articles.Add(article2);
+
+        if (_cachedArticles.TryGetValue(id, out Article cachedArticle))
+        { 
+            articles.Add(cachedArticle);
+        }
+
+        var articleMinPrice = articles.MinBy(x => x.Price);
+
+        if (articleMinPrice is null)
+        {     
+            _logger.LogWarning("Unable to retrieve article");
+            return (false, new Article());
+        }
+
+        return (true, articles.MinBy(x => x.Price));
+    }
+
+    private async Task<(bool, Article)> GetArticleFromDealer1(int id)
+    {
+
+        var found = false;
+        Article article = new Article();
         try
         {
-            if (_wareHouseService.ArticleInInventory(id))
-                articles.Add(_wareHouseService.GetArticle(id));
-
             _logger.LogInformation("Trying to retrieve article from dealer 1");
-            var response1 = await _firstDealer.GetArticle(id);
+            var response = await _firstDealerClient.GetArticle(id);
 
-            switch (response1.IsSuccessStatusCode)
+            switch (response.IsSuccessStatusCode)
             {
-                case true when response1.Content != null:
-                    articles.Add(response1.Content);
+                case true when response.Content != null:
+                    found = true;
+                    article = response.Content;
                     break;
                 case false:
-                    _logger.LogWarning($"Failed to get article from dealer 1: {response1.Error}");
+                    _logger.LogWarning($"Failed to get article from dealer 1: {response.Error}");
                     break;
             }
-
-            _logger.LogInformation("Trying to retrieve article from dealer 1");
-            var response2 = await _secondDealer.GetArticle(id);
-
-            switch (response2.IsSuccessStatusCode)
-            {
-                case true when response2.Content != null:
-                    articles.Add(response2.Content);
-                    break;
-                case false:
-                    _logger.LogWarning($"Failed to get article from dealer 2: {response2.Error}");
-                    break;
-            }
-
-            var (found, article) = _articleQuery.GetById(id);
-
-            if (found && article is not null)
-                articles.Add(article);
-            else _logger.LogInformation("Could not get article from db");
         }
         catch (Exception ex)
         {
-            _logger.LogError($"Failed to get best value article: {ex.Message}");
-            throw new Exception(ex.Message);
+            _logger.LogError($"Failed to get article from dealer 1:{ex.Message}");
+            return (false, null);
         }
 
-        return articles.MinBy(x => x.Price);
+        return (found, article);
     }
+
+    private async Task<(bool, Article)> GetArticleFromDealer2(int id)
+    {
+        var found = false;
+        Article article = new Article();
+        try
+        {
+            _logger.LogInformation("Trying to retrieve article from dealer 2");
+            var response = await _secondDealerClient.GetArticle(id);
+
+            switch (response.IsSuccessStatusCode)
+            {
+                case true when response.Content != null:
+                    found = true;
+                    article = response.Content;
+                    break;
+                case false:
+                    _logger.LogWarning($"Failed to get article from dealer 2: {response.Error}");
+                    break;
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"Failed to get article from dealer 2:{ex.Message}");
+            return (false, null);
+        }
+
+        return (found, article);
+    }
+
+
 }
