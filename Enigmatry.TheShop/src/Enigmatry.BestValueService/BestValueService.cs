@@ -4,7 +4,6 @@ using Enigmatry.Shop.VendorClient;
 using Enigmatry.Shop.WareHouseService;
 using Mapster;
 using Microsoft.Extensions.Logging;
-using Refit;
 
 namespace Enigmatry.Shop.BestValueService;
 

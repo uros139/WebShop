@@ -37,14 +37,14 @@ public class GetArticleHandler : IRequestHandler<GetArticle, Response<Article>>
 
         if (_cachedArticles.TryGetValue(request.Id, out var cachedArticle))
         {
-            if (article != null && cachedArticle.Price > article.Price)
+            if (cachedArticle.Price > article.Price)
             {
                 _cachedArticles.Remove(article.Id);
                 _cachedArticles.TryAdd(article.Id, article);
             }
         }
 
-        if (article != null && request.MaxPrice is not null && article.Price >= request.MaxPrice)
+        if (request.MaxPrice is not null && article.Price >= request.MaxPrice)
             return ApiResponse.Fail(article, "Not found for that price");
 
         return ApiResponse.Ok(article);

@@ -1,5 +1,4 @@
-﻿using Enigmatry.Shop.Models;
-using Enigmatry.Shop.VendorClient.Models;
+﻿using Enigmatry.Shop.VendorClient.Models;
 using Refit;
 
 namespace Enigmatry.Shop.VendorClient;

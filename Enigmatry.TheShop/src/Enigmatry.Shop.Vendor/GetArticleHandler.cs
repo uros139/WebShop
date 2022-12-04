@@ -1,5 +1,4 @@
-﻿using Enigmatry.Vendor.DataAccess.Commands;
-using Enigmatry.Vendor.Models;
+﻿using Enigmatry.Vendor.Models;
 using Enigmatry.Vendor.SupplierService;
 using MediatR;
 
